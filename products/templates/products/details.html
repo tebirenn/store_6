@@ -1,0 +1,10 @@
+{% extends 'products/base.html' %}
+
+
+
+{% block main %}
+<p>ID: {{ product.id }}</p>
+<p>Название: {{ product.name }}</p>
+<p>Цена: {{ product.price }} KZT</p>
+<p>Категория: {{ product.category.name }}</p>
+{% endblock %}

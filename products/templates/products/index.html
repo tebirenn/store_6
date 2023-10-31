@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+</head>
+<body>
+    
+
+    {% for p in products %}
+        <p>ID: {{ p.id }}</p>
+        <p>Название: {{ p.name }}</p>
+        <p>Цена: {{ p.price }} KZT</p>
+        <p>Категория: {{ p.category.name }}</p>
+
+        Категория цены: 
+        {% if p.price < 100 %}
+            Доступная
+        {% elif 100 <= p.price and p.price <= 200 %}
+            Средняя
+        {% else %}
+            Дорогая
+        {% endif %}
+        
+
+        <br><br>
+    {% endfor %}
+</body>
+</html>
