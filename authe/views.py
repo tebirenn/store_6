@@ -44,7 +44,6 @@ class Profile(LoginRequiredMixin, View):
     login_url = '/authe/signin/'
 
     def get(self, request):
-
         return render(request, 'authe/profile.html')
     
 
@@ -64,7 +63,6 @@ class Login(View):
             try:
                 user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
                 login(request, user)
-
                 return redirect(reverse_lazy('authe:profile'))
             except:
                 return render(request, 'authe/signin.html', context={'form': form, 'err': '1'})

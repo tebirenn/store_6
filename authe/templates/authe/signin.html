@@ -19,5 +19,13 @@
     {% if err %}
         {{err}}
     {% endif %}
+
+    {% block comment %}
+    {% if request.user.is_authenticated %}
+        <input type="text">
+    {% else %}
+        <a href="">re</a>
+    {% endif %}
+    {% endblock %}
 </body>
 </html>
