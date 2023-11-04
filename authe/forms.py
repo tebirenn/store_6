@@ -1,7 +1,8 @@
 from django import forms
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 
+from .models import User
 
 # class UserSignUpForm(forms.Form):
 #     username = forms.CharField(
@@ -20,17 +21,25 @@ from django.contrib.auth.forms import UserCreationForm
 #     #     }
 
 
-class UserSignUpForm(UserCreationForm): 
+class UserSignUpForm(forms.ModelForm): 
     # description = forms.CharField()
     class Meta:
         model = User
-        fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
+        fields = ('username', 'email', 'first_name', 'last_name', 'password',)
         
         widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'password1': forms.PasswordInput(attrs={'class': 'form-control'}),
-            'password2': forms.PasswordInput(attrs={'class': 'form-control'}),
+            'password': forms.PasswordInput(attrs={'class': 'form-control'}),
+            # 'password2': forms.PasswordInput(attrs={'class': 'form-control'}),
         } 
+
+
+class UserSignInForm(AuthenticationForm):
+    class Meta:
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'password': forms.PasswordInput(attrs={'class': 'form-control'}),
+        }
